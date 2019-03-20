@@ -123,8 +123,8 @@ class _LoginPageState extends State<LoginPage> {
                         alignment: Alignment.centerRight,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 16, right: 32),
-                          child: GestureDetector(
-                            child: Text(
+                          child: InkWell(
+                            child: Text (
                               "Clique aqui e faça seu cadastro.",
                               style: TextStyle(color: Colors.grey),
                             ),
