@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carteira_vacina_digital/page/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileApp extends StatelessWidget {
   @override
@@ -14,6 +15,29 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  final nameController  = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  void register(BuildContext context) async {
+    try {
+      FirebaseUser user = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text );
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text("Usuário cadastrado com sucesso"),
+          backgroundColor: Colors.greenAccent,
+        ));
+    }catch(e) {
+      print(e);
+       Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text("Falha ao cadastrar usuário"),
+          backgroundColor: Colors.redAccent,
+        ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,26 +96,31 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      buildInputText("Nome", Icons.person),
-                      buildInputText("Email", Icons.email),
-                      buildInputText("Senha", Icons.vpn_key),
-                      buildInputText("Confirmar Senha", Icons.vpn_key),
-                      Container(
-                        height: 40,
-                        margin: EdgeInsets.only(top: 10),
-                        width: MediaQuery.of(context).size.width / 1.2,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Color(0xFFf45d27), Color(0xFFf5851f)],
-                            ),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
-                        child: Center(
-                            child: Text(
-                          "Registrar".toUpperCase(),
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        )),
+                      buildInputText("Nome",  Icons.person, nameController),
+                      buildInputText("Email", Icons.email, emailController),
+                      buildInputText("Senha", Icons.vpn_key, passwordController),
+                      buildInputText("Confirmar Senha", Icons.vpn_key, confirmPasswordController),
+                      GestureDetector(
+                          onTap: () {
+                            this.register(context);
+                          },
+                          child: Container(
+                          height: 40,
+                          margin: EdgeInsets.only(top: 10),
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Color(0xFFf45d27), Color(0xFFf5851f)],
+                              ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50))),
+                          child: Center(
+                              child: Text(
+                            "Registrar".toUpperCase(),
+                            style: TextStyle(
+                                color: Colors.white, fontWeight: FontWeight.bold),
+                          )),
+                        ),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -130,7 +159,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget buildInputText(String label, IconData icon) {
+  Widget buildInputText(String label, IconData icon, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(top: 4, left: 16, right: 16, bottom: 15),
       child: Container(
@@ -148,6 +177,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 icon,
                 color: Colors.grey,
               )),
+          controller: controller,
         ),
       ),
     );

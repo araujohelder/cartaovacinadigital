@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "989215293204",
+    "firebase_url": "https://cartao-vacinacao-387f5.firebaseio.com",
+    "project_id": "cartao-vacinacao-387f5",
+    "storage_bucket": "cartao-vacinacao-387f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989215293204:android:f48ebc6b172b73aa",
+        "android_client_info": {
+          "package_name": "com.example.carteira_vacina_digital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989215293204-hn48vu4s55qmnigj001f0sc6qr5t6lrn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.carteira_vacina_digital",
+            "certificate_hash": "e8ab4dde847b9c24822668dd74d04ca691f682b5"
+          }
+        },
+        {
+          "client_id": "989215293204-9kjh4kjp6krh34pj8kk3sndt9ii6onvh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtfattzX_8TTQAn7a9DW6d_jFUJLFC7J0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989215293204-9kjh4kjp6krh34pj8kk3sndt9ii6onvh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
