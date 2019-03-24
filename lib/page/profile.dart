@@ -25,10 +25,13 @@ class _ProfilePageState extends State<ProfilePage> {
     try {
       FirebaseUser user = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text );
-        Scaffold.of(context).showSnackBar(SnackBar(
+        if ( user != null ) {
+          Scaffold.of(context).showSnackBar(SnackBar(
           content: Text("Usuário cadastrado com sucesso"),
           backgroundColor: Colors.greenAccent,
         ));
+        }
+        
     }catch(e) {
       print(e);
        Scaffold.of(context).showSnackBar(SnackBar(
