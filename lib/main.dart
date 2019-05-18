@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Carteira de vacinação digital',
       theme: ThemeData(
         primarySwatch: Colors.blue,

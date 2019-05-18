@@ -1,3 +1,4 @@
+import 'package:carteira_vacina_digital/page/home.dart';
 import 'package:flutter/material.dart';
 import 'package:carteira_vacina_digital/page/profile.dart';
 
@@ -32,9 +33,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: MediaQuery.of(context).size.height / 3,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Color(0xFFf45d27), Color(0xFFf5851f)]),
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Colors.red[200], Colors.red[900]]),
                       borderRadius:
                           BorderRadius.only(bottomLeft: Radius.circular(90))),
                   child: Column(
@@ -124,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 16, right: 32),
                           child: InkWell(
-                            child: Text (
+                            child: Text(
                               "Clique aqui e faça seu cadastro.",
                               style: TextStyle(color: Colors.grey),
                             ),
@@ -143,15 +144,19 @@ class _LoginPageState extends State<LoginPage> {
                       width: MediaQuery.of(context).size.width / 1.2,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xFFf45d27), Color(0xFFf5851f)],
+                            colors: [Colors.red[600], Colors.red[900]],
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Center(
-                          child: Text(
-                        "Entrar".toUpperCase(),
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      )),
+                      child: FlatButton(
+                        child: Text( "Entrar".toUpperCase(),
+                                      style: TextStyle(
+                                      color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                  Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=> StartPage()));
+                        },
+                      ),
                     ),
                   ],
                 ),
