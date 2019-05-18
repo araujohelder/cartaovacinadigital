@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Carteira de vacinação digital',
+      title: 'Prontuário único digital',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
