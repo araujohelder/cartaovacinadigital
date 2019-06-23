@@ -1,4 +1,5 @@
 import 'package:carteira_vacina_digital/page/home.dart';
+import 'package:carteira_vacina_digital/page/register.dart';
 import 'package:flutter/material.dart';
 import 'package:carteira_vacina_digital/page/profile.dart';
 
@@ -6,7 +7,7 @@ class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Cartão de Vacinação Digital",
+      title: "DiPronto",
       home: LoginPage(),
       theme: ThemeData(primarySwatch: Colors.orange),
     );
@@ -130,10 +131,15 @@ class _LoginPageState extends State<LoginPage> {
                               style: TextStyle(color: Colors.grey),
                             ),
                             onTap: () {
-                              Navigator.push(
+                              /*Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => ProfileApp()));
+                                      */
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegisterPage()));
                             },
                           ),
                         ),
@@ -147,15 +153,20 @@ class _LoginPageState extends State<LoginPage> {
                             colors: [Colors.red[600], Colors.red[900]],
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: FlatButton(
-                        child: Text( "Entrar".toUpperCase(),
-                                      style: TextStyle(
-                                      color: Colors.white, fontWeight: FontWeight.bold),
-                                ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                  Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=> StartPage()));
-                        },
+                      child: SizedBox.expand(
+                        child: FlatButton(
+                          child: Text(
+                            "Entrar".toUpperCase(),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).push(new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    StartPage()));
+                          },
+                        ),
                       ),
                     ),
                   ],
