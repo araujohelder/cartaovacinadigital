@@ -76,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: AssetImage("images/logo_mettricx.JPG"))),
+                                image: AssetImage("images/person.png"))),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
@@ -122,7 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: Builder(
                                 builder: (context) => FlatButton.icon(
                                 label: Text("Salvar", style: TextStyle(color: Colors.white)),
-                                icon: Icon(Icons.add_circle, color: Colors.white), 
+                                icon: Icon(Icons.save, color: Colors.white), 
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
                                     try {
@@ -308,7 +308,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   if (value.isEmpty) {
                         return "Informe a confirmação de senha!";
                   } else {
-                    if (value!=controllerPassword.value) {
+                    if (value!=controllerPassword.text) {
+                      _confirmPasswordController.clear();
                       return "A confirmação de senha é diferente!";
                     }
                   }
