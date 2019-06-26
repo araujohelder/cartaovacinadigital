@@ -70,8 +70,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: <Widget>[
                       //Icon(Icons.person, size: 80, color: Colors.white),
                       Container(
-                        width: 80,
-                        height: 80,
+                        width: 100,
+                        height: 100,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(

@@ -27,7 +27,7 @@ class StartPage extends StatelessWidget {
               currentAccountPicture: GestureDetector(
                 onTap: (){},
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage('https://lh3.googleusercontent.com/a-/AAuE7mAVOWwoxJkkNef0oWVqh3QBlgJluum-4OWSx5CHIg'),
+                  backgroundImage: AssetImage("images/person.png"),
                 ),
               ),
             ),
