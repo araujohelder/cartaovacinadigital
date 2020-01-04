@@ -1,22 +1,11 @@
 import 'dart:io';
 
-import 'package:carteira_vacina_digital/page/home.dart';
-import 'package:carteira_vacina_digital/page/register.dart';
+import 'package:carteira_vacina_digital/src/home/home_page.dart';
+import 'package:carteira_vacina_digital/src/user/create_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
-
-class LoginApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "DiPronto",
-      home: LoginPage(),
-      theme: ThemeData(primarySwatch: Colors.orange),
-    );
-  }
-}
 
 class LoginPage extends StatefulWidget {
   @override
@@ -144,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => RegisterPage()));
+                                        builder: (context) => CreatePage()));
                               },
                             ),
                           ),
@@ -162,63 +151,61 @@ class _LoginPageState extends State<LoginPage> {
                         child: SizedBox.expand(
                           child: Builder(
                             builder: (context) => FlatButton(
-                                  child: Text(
-                                    "Entrar".toUpperCase(),
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  onPressed: () async {
-                                    if (_formKey.currentState.validate()) {
-                                      FirebaseUser user;
-                                      try {
-                                        user = await _auth
-                                            .signInWithEmailAndPassword(
-                                                email: _emailController.text,
-                                                password:
-                                                    _passwordController.text);
-                                      } catch (e) {
-                                        print(e.toString());
-                                        print(e.message);
-                                        String errorMessage = '';
-                                        if (Platform.isAndroid) {
-                                          switch (e.message) {
-                                            case 'The password is invalid or the user does not have a password.':
-                                              errorMessage =
-                                                  'Usuário e senha inválidos';
-                                              break;
-                                              case 'The email address is badly formatted.':
-                                              errorMessage =
-                                                  'Formato de email inválido.';
-                                              break;
-                                            default:
-                                              errorMessage =
-                                                  'Falha ao cadastrar usuário!';
-                                          }
-                                        } else if (Platform.isIOS) {
-                                          switch (e.code) {
-                                            default:
-                                              errorMessage =
-                                                  "Falha ao cadastrar usuário!";
-                                          }
-                                        }
-                                        Scaffold.of(context)
-                                            .showSnackBar(SnackBar(
-                                          content: Text(errorMessage),
-                                          backgroundColor: Colors.redAccent,
-                                        ));
-                                      } finally {
-                                        if (user != null) {
-                                          // sign in successful!
-                                          _pushPage(context, StartPage());
-                                        } else {
-                                          // sign in unsuccessful
-                                          print('sign in Not');
-                                        }
+                              child: Text(
+                                "Entrar".toUpperCase(),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              onPressed: () async {
+                                if (_formKey.currentState.validate()) {
+                                  FirebaseUser user;
+                                  try {
+                                    user =
+                                        await _auth.signInWithEmailAndPassword(
+                                            email: _emailController.text,
+                                            password: _passwordController.text);
+                                  } catch (e) {
+                                    print(e.toString());
+                                    print(e.message);
+                                    String errorMessage = '';
+                                    if (Platform.isAndroid) {
+                                      switch (e.message) {
+                                        case 'The password is invalid or the user does not have a password.':
+                                          errorMessage =
+                                              'Usuário e senha inválidos';
+                                          break;
+                                        case 'The email address is badly formatted.':
+                                          errorMessage =
+                                              'Formato de email inválido.';
+                                          break;
+                                        default:
+                                          errorMessage =
+                                              'Um problema ocorreu com a sua conexão';
+                                      }
+                                    } else if (Platform.isIOS) {
+                                      switch (e.code) {
+                                        default:
+                                          errorMessage =
+                                              "Falha ao cadastrar usuário!";
                                       }
                                     }
-                                  },
-                                ),
+                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text(errorMessage),
+                                      backgroundColor: Colors.redAccent,
+                                    ));
+                                  } finally {
+                                    if (user != null) {
+                                      // sign in successful!
+                                      _pushPage(context, HomePage());
+                                    } else {
+                                      // sign in unsuccessful
+                                      print('sign in Not');
+                                    }
+                                  }
+                                }
+                              },
+                            ),
                           ),
                         ),
                       ),
@@ -232,8 +219,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-  void signInWithEmail() async {}
 
   void _pushPage(BuildContext context, Widget page) {
     Navigator.of(context).push(
